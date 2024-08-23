@@ -76,8 +76,11 @@ export default function InvestmentsPage() {
   return (
     <>
       <Helmet>
-        <title>Kanika's Application2</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <title>AgroFinance</title>
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
@@ -313,7 +316,10 @@ export default function InvestmentsPage() {
                         <Img src="images/img_group_876.svg" />
                       </Button>
                       <div className="flex flex-col items-start justify-start w-[60%] gap-[5px]">
-                        <Text as="p" className="!text-blue_gray-900 !font-medium">
+                        <Text
+                          as="p"
+                          className="!text-blue_gray-900 !font-medium"
+                        >
                           Tesla Motors
                         </Text>
                         <Text size="lg" as="p">
@@ -323,7 +329,10 @@ export default function InvestmentsPage() {
                     </div>
                     <div className="flex flex-row justify-between w-[44%] sm:w-full mr-[21px] sm:mr-5">
                       <div className="flex flex-col items-start justify-start gap-[5px]">
-                        <Text as="p" className="!text-blue_gray-900 !font-medium">
+                        <Text
+                          as="p"
+                          className="!text-blue_gray-900 !font-medium"
+                        >
                           $8,200
                         </Text>
                         <Text size="lg" as="p">

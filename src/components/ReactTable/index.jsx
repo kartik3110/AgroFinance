@@ -1,9 +1,14 @@
 import React from "react";
 
-import { flexRender, getCoreRowModel, useReactTable, getSortedRowModel } from "@tanstack/react-table";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getSortedRowModel,
+} from "@tanstack/react-table";
 
 const sizes = {
-  xs: "p-[13px]",
+  xs: "p-[12px]",
   sm: "p-[-563px]",
 };
 
@@ -13,7 +18,7 @@ const ReactTable = ({
   headerProps = {},
   bodyProps = {},
   className = "",
-  rowDataProps = { className: "" },
+  rowDataProps = { classname: "" },
   size,
 
   ...restConfig
@@ -36,7 +41,12 @@ const ReactTable = ({
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
               <th key={header.id} {...header.column.columnDef?.meta}>
-                {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
               </th>
             ))}
           </tr>
@@ -44,7 +54,11 @@ const ReactTable = ({
       </thead>
       <tbody {...bodyProps}>
         {table.getRowModel().rows.map((row) => (
-          <tr {...rowDataProps} className={`${rowDataProps?.className}`} key={row.id}>
+          <tr
+            {...rowDataProps}
+            className={`${rowDataProps?.className}`}
+            key={row.id}
+          >
             {row.getVisibleCells().map((cell) => (
               <td key={cell.id} className={size ? sizes[size] : ``}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

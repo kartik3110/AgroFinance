@@ -29,7 +29,7 @@ const ProjectRoutes = () => {
       element: <Services />,
     },
     {
-      path: "settingeditprofile",
+      path: "registerUser",
       element: <SettingEditProfile />,
     },
   ]);

@@ -9,7 +9,7 @@ export default function Header({ ...props }) {
     <header {...props}>
       <div className="flex flex-row md:flex-col justify-between items-center w-full mx-auto md:gap-10 md:px-5 max-w-[1110px]">
         <Heading size="3xl" as="h3" className="!text-gray-900">
-          Transactions
+          AgroFinance
         </Heading>
         <div className="flex flex-row sm:flex-col justify-between items-center w-auto sm:gap-10">
           <Input
@@ -18,10 +18,19 @@ export default function Header({ ...props }) {
             placeholder="Search for something"
             value={searchBarValue}
             onChange={(e) => setSearchBarValue(e)}
-            prefix={<Img src="images/img_search.svg" alt="search" className="cursor-pointer" />}
+            prefix={
+              <Img
+                src="images/img_search.svg"
+                alt="search"
+                className="cursor-pointer"
+              />
+            }
             suffix={
               searchBarValue?.length > 0 ? (
-                <CloseSVG onClick={() => setSearchBarValue("")} fillColor="#888ea2ff" />
+                <CloseSVG
+                  onClick={() => setSearchBarValue("")}
+                  fillColor="#888ea2ff"
+                />
               ) : null
             }
             className="w-[50%] sm:w-full gap-[15px] text-blue_gray-400 rounded-[25px]"
@@ -32,7 +41,11 @@ export default function Header({ ...props }) {
           <Button shape="circle" className="w-[50px]">
             <Img src="images/img_002_notification_1.svg" />
           </Button>
-          <Img src="images/img_ellipse_1.png" alt="circleimage" className="h-[60px] w-[60px] md:h-auto rounded-[50%]" />
+          <Img
+            src="images/img_ellipse_1.png"
+            alt="circleimage"
+            className="h-[60px] w-[60px] md:h-auto rounded-[50%]"
+          />
         </div>
       </div>
     </header>

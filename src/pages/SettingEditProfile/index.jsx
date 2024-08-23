@@ -14,8 +14,11 @@ export default function SettingEditProfilePage() {
   return (
     <>
       <Helmet>
-        <title>Kanika's Application2</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <title>AgroFinance</title>
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
@@ -27,7 +30,7 @@ export default function SettingEditProfilePage() {
                 <div className="flex flex-row sm:flex-col justify-start items-start w-[39%] md:w-full sm:gap-5 z-[1]">
                   <div className="flex flex-col items-center justify-start w-[29%] sm:w-full gap-2">
                     <Text as="p" className="!text-indigo-600_01 !font-medium">
-                      Edit Profile
+                      Register User
                     </Text>
                     <div className="h-[3px] w-full rounded-tl-[10px] rounded-tr-[10px] bg-indigo-600_01" />
                   </div>
@@ -40,7 +43,7 @@ export default function SettingEditProfilePage() {
                 </div>
                 <div className="h-px w-full mt-[-1px] bg-gray-300" />
               </div>
-              <div className="flex flex-row md:flex-col justify-between items-start w-full md:gap-10">
+              <div className="flex flex-col md:flex-col justify-between items-start w-full md:gap-10">
                 <div className="flex flex-row justify-center w-[13%] md:w-full mt-[3px] md:mt-0">
                   <div className="flex flex-row justify-center items-center w-full">
                     <Img
@@ -48,7 +51,12 @@ export default function SettingEditProfilePage() {
                       alt="circleimage_one"
                       className="h-[130px] w-[130px] md:h-auto rounded-[50%]"
                     />
-                    <Button color="indigo_600_01" size="sm" shape="circle" className="w-[30px] ml-[-28px]">
+                    <Button
+                      color="indigo_600_01"
+                      size="sm"
+                      shape="circle"
+                      className="w-[30px] ml-[-28px]"
+                    >
                       <Img src="images/img_group_194.svg" />
                     </Button>
                   </div>
@@ -100,7 +108,12 @@ export default function SettingEditProfilePage() {
                       <Text as="p">Date of Birth</Text>
                       <SelectBox
                         shape="round"
-                        indicator={<Img src="images/img_arrowdown_blue_gray_400.svg" alt="arrow_down" />}
+                        indicator={
+                          <Img
+                            src="images/img_arrowdown_blue_gray_400.svg"
+                            alt="arrow_down"
+                          />
+                        }
                         name="dateOfBirth"
                         placeholder="25 January 1990"
                         options={dropDownOptions}
@@ -162,7 +175,7 @@ export default function SettingEditProfilePage() {
                     size="lg"
                     className="mt-[30px] sm:px-5 font-medium min-w-[190px] rounded-[15px] sm:min-w-full"
                   >
-                    Save
+                    Register
                   </Button>
                 </div>
               </div>

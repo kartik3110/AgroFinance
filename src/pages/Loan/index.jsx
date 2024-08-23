@@ -175,7 +175,11 @@ export default function LoanPage() {
       table1ColumnHelper.accessor("repay", {
         cell: (info) => (
           <div className="h-[20px] md:w-full relative">
-            <Text size="lg" as="p" className="left-1/4 top-0 m-auto !text-indigo-500 text-center !font-medium absolute">
+            <Text
+              size="lg"
+              as="p"
+              className="left-1/4 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
+            >
               {info?.getValue?.()}
             </Text>
             <div className="h-[35px] w-[85%] left-[2%] top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
@@ -194,8 +198,11 @@ export default function LoanPage() {
   return (
     <>
       <Helmet>
-        <title>Kanika's Application2</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <title>AgroFinance</title>
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
@@ -208,7 +215,7 @@ export default function LoanPage() {
                   <Img src="images/img_user_3_2.svg" />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-[57%] gap-[7px]">
-                  <Text as="p">Personal Loans</Text>
+                  <Text as="p">Total Pool Value</Text>
                   <Heading size="xl" as="h1">
                     $50,000
                   </Heading>
@@ -219,7 +226,7 @@ export default function LoanPage() {
                   <Img src="images/img_briefcase_1.svg" />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-[60%] gap-1.5">
-                  <Text as="p">Corporate Loans</Text>
+                  <Text as="p">Available Pool Value</Text>
                   <Heading size="xl" as="h2">
                     $100,000
                   </Heading>
@@ -230,20 +237,9 @@ export default function LoanPage() {
                   <Img src="images/img_graph_1.svg" />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-[58%] gap-[7px]">
-                  <Text as="p">Business Loans</Text>
+                  <Text as="p">Liquidity</Text>
                   <Heading size="xl" as="h3">
-                    $500,000
-                  </Heading>
-                </div>
-              </div>
-              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-3 p-[21px] sm:p-5 bg-white-A700 rounded-[25px]">
-                <Button size="4xl" shape="circle" className="w-[70px] my-1">
-                  <Img src="images/img_group_296.svg" />
-                </Button>
-                <div className="flex flex-col items-start justify-start w-[62%] gap-2.5">
-                  <Text as="p">Custom Loans</Text>
-                  <Heading size="lg" as="h4">
-                    Choose Money
+                    25%
                   </Heading>
                 </div>
               </div>
@@ -252,7 +248,7 @@ export default function LoanPage() {
               <Heading as="h5">Active Loans Overview</Heading>
               <div className="flex flex-row justify-center w-full p-5 bg-white-A700 rounded-[25px]">
                 <ReactTable
-                  size="sm"
+                  size="xs"
                   bodyProps={{ className: "md:flex-col" }}
                   headerProps={{ className: "md:flex-col md:gap-5" }}
                   rowDataProps={{ className: "md:flex-col md:gap-5" }}
