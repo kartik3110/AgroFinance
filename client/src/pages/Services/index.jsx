@@ -18,7 +18,7 @@ export default function ServicesPage() {
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]  mb-8">
           <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
-          <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">
+          {/* <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">
             <div className="flex flex-row md:flex-col w-full gap-[30px]">
               <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
                 <Button size="4xl" shape="circle" className="w-[70px]">
@@ -359,7 +359,8 @@ export default function ServicesPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          In Progress
         </div>
       </div>
     </>

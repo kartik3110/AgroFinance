@@ -1,6 +1,7 @@
 import React from "react";
 import { CloseSVG } from "../../assets/images";
 import { Img, Button, Input, Heading } from "./..";
+import { Link } from "react-router-dom";
 
 export default function Header({ ...props }) {
   const [searchBarValue, setSearchBarValue] = React.useState("");
@@ -12,40 +13,14 @@ export default function Header({ ...props }) {
           AgroFinance
         </Heading>
         <div className="flex flex-row sm:flex-col justify-between items-center w-auto sm:gap-10">
-          <Input
-            color="gray_100_03"
-            name="search"
-            placeholder="Search for something"
-            value={searchBarValue}
-            onChange={(e) => setSearchBarValue(e)}
-            prefix={
-              <Img
-                src="images/img_search.svg"
-                alt="search"
-                className="cursor-pointer"
-              />
-            }
-            suffix={
-              searchBarValue?.length > 0 ? (
-                <CloseSVG
-                  onClick={() => setSearchBarValue("")}
-                  fillColor="#888ea2ff"
-                />
-              ) : null
-            }
-            className="w-[50%] sm:w-full gap-[15px] text-blue_gray-400 rounded-[25px]"
-          />
-          <Button shape="circle" className="w-[50px]">
-            <Img src="images/img_settings_1.svg" />
-          </Button>
-          <Button shape="circle" className="w-[50px]">
-            <Img src="images/img_002_notification_1.svg" />
-          </Button>
-          <Img
-            src="images/img_ellipse_1.png"
-            alt="circleimage"
-            className="h-[60px] w-[60px] md:h-auto rounded-[50%]"
-          />
+          <Button className="mr-4 border rounded-lg">Connect Wallet</Button>
+          <Link to="/profile">
+            <Img
+              src="images/profileAvatar.png"
+              alt="circleimage"
+              className="h-[45px] w-[45px] md:h-auto rounded-[50%]"
+            />
+          </Link>
         </div>
       </div>
     </header>

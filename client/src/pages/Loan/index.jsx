@@ -9,84 +9,51 @@ import { createColumnHelper } from "@tanstack/react-table";
 const table1Data = [
   {
     slno: "01.",
-    loanmoney: "$100,000",
-    lefttorepay: "$40,500",
-    duration: "8 Months",
-    interestrate: "12%",
-    installment: "$2,000 / month",
-    repay: "Repay",
+    loanmoney: "$1,000",
+    lefttorepay: "$1,000",
+    address: "0x173537E....f04F25490",
   },
   {
     slno: "02.",
-    loanmoney: "$500,000",
-    lefttorepay: "$250,000",
-    duration: "36 Months",
-    interestrate: "10%",
-    installment: "$8,000 / month",
-    repay: "Repay",
+    loanmoney: "$500",
+    lefttorepay: "$500",
+    address: "0x1hh537E....f04F25490",
   },
   {
     slno: "03.",
-    loanmoney: "$900,000",
-    lefttorepay: "$40,500",
-    duration: "12 Months",
-    interestrate: "12%",
-    installment: "$5,000 / month",
-    repay: "Repay",
+    loanmoney: "$900",
+    lefttorepay: "$900",
+    address: "0x173657E....f04F25490",
   },
   {
     slno: "04.",
-    loanmoney: "$50,000",
-    lefttorepay: "$40,500",
-    duration: "25 Months",
-    interestrate: "5%",
-    installment: "$2,000 / month",
-    repay: "Repay",
+    loanmoney: "$500",
+    lefttorepay: "$500",
+    address: "0x1735366....f04F25490",
   },
   {
     slno: "05.",
-    loanmoney: "$50,000",
-    lefttorepay: "$40,500",
-    duration: "5 Months",
-    interestrate: "16%",
-    installment: "$10,000 / month",
-    repay: "Repay",
+    loanmoney: "$600",
+    lefttorepay: "$600",
+    address: "0x173887E....f04F25490",
   },
   {
     slno: "06.",
-    loanmoney: "$80,000",
-    lefttorepay: "$25,500",
-    duration: "14 Months",
-    interestrate: "8%",
-    installment: "$2,000 / month",
-    repay: "Repay",
+    loanmoney: "$800",
+    lefttorepay: "$800",
+    address: "0x173587E....f04F25490",
   },
   {
     slno: "07.",
-    loanmoney: "$12,000",
-    lefttorepay: "$5,500",
-    duration: "9 Months",
-    interestrate: "13%",
-    installment: "$500 / month",
-    repay: "Repay",
+    loanmoney: "$100",
+    lefttorepay: "$100",
+    address: "0x173007E....f04F25490",
   },
   {
     slno: "08.",
-    loanmoney: "$160,000",
-    lefttorepay: "$100,800",
-    duration: "3 Months",
-    interestrate: "12%",
-    installment: "$900 / month",
-    repay: "Repay",
-  },
-  {
-    slno: "Total",
-    loanmoney: "$125,0000",
-    lefttorepay: "$750,000",
-    duration: "8 Months",
-    interestrate: "12%",
-    installment: "$50,000 / month",
-    repay: "Repay",
+    loanmoney: "$700",
+    lefttorepay: "$700",
+    address: "0x173RR7E....f04F25490",
   },
 ];
 
@@ -128,12 +95,12 @@ export default function LoanPage() {
         ),
         header: (info) => (
           <Text as="p" className="pt-px pb-2.5 !font-medium">
-            Left to repay
+            Pool Value
           </Text>
         ),
         meta: { width: "174px" },
       }),
-      table1ColumnHelper.accessor("duration", {
+      table1ColumnHelper.accessor("address", {
         cell: (info) => (
           <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
@@ -141,58 +108,58 @@ export default function LoanPage() {
         ),
         header: (info) => (
           <Text as="p" className="pb-[11px] !font-medium">
-            Duration
+            Borrower's Address
           </Text>
         ),
         meta: { width: "171px" },
       }),
-      table1ColumnHelper.accessor("interestrate", {
-        cell: (info) => (
-          <Text as="p" className="text-center !text-blue_gray-900">
-            {info?.getValue?.()}
-          </Text>
-        ),
-        header: (info) => (
-          <Text as="p" className="pt-px pb-[11px] !font-medium">
-            Interest rate
-          </Text>
-        ),
-        meta: { width: "147px" },
-      }),
-      table1ColumnHelper.accessor("installment", {
-        cell: (info) => (
-          <Text as="p" className="text-center !text-blue_gray-900">
-            {info?.getValue?.()}
-          </Text>
-        ),
-        header: (info) => (
-          <Text as="p" className="pt-px pb-[11px] !font-medium">
-            Installment
-          </Text>
-        ),
-        meta: { width: "172px" },
-      }),
-      table1ColumnHelper.accessor("repay", {
-        cell: (info) => (
-          <div className="text-center h-[30px] md:w-full relative">
-            <a className=" hover:cursor-pointer">
-              <Text
-                size="lg"
-                as="p"
-                className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
-              >
-                {info?.getValue?.()}
-              </Text>
-            </a>
-          </div>
-        ),
-        header: (info) => (
-          <Text as="p" className="pt-px pb-2.5 !font-medium">
-            Repay
-          </Text>
-        ),
-        meta: { width: "118px" },
-      }),
+      // table1ColumnHelper.accessor("interestrate", {
+      //   cell: (info) => (
+      //     <Text as="p" className="text-center !text-blue_gray-900">
+      //       {info?.getValue?.()}
+      //     </Text>
+      //   ),
+      //   header: (info) => (
+      //     <Text as="p" className="pt-px pb-[11px] !font-medium">
+      //       Interest rate
+      //     </Text>
+      //   ),
+      //   meta: { width: "147px" },
+      // }),
+      // table1ColumnHelper.accessor("installment", {
+      //   cell: (info) => (
+      //     <Text as="p" className="text-center !text-blue_gray-900">
+      //       {info?.getValue?.()}
+      //     </Text>
+      //   ),
+      //   header: (info) => (
+      //     <Text as="p" className="pt-px pb-[11px] !font-medium">
+      //       Installment
+      //     </Text>
+      //   ),
+      //   meta: { width: "172px" },
+      // }),
+      // table1ColumnHelper.accessor("repay", {
+      //   cell: (info) => (
+      //     <div className="text-center h-[30px] md:w-full relative">
+      //       <a className=" hover:cursor-pointer">
+      //         <Text
+      //           size="lg"
+      //           as="p"
+      //           className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+      //         >
+      //           {info?.getValue?.()}
+      //         </Text>
+      //       </a>
+      //     </div>
+      //   ),
+      //   header: (info) => (
+      //     <Text as="p" className="pt-px pb-2.5 !font-medium">
+      //       Repay
+      //     </Text>
+      //   ),
+      //   meta: { width: "118px" },
+      // }),
     ];
   }, []);
 
@@ -222,7 +189,7 @@ export default function LoanPage() {
                   </Heading>
                 </div>
               </div>
-              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[21px] sm:p-5 bg-white-A700 rounded-[25px]">
+              {/* <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[21px] sm:p-5 bg-white-A700 rounded-[25px]">
                 <Button size="4xl" shape="circle" className="w-[70px] my-1">
                   <Img src="images/img_briefcase_1.svg" />
                 </Button>
@@ -232,7 +199,7 @@ export default function LoanPage() {
                     $100,000
                   </Heading>
                 </div>
-              </div>
+              </div> */}
               <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
                 <Button size="4xl" shape="circle" className="w-[70px]">
                   <Img src="images/img_graph_1.svg" />

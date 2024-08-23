@@ -64,7 +64,7 @@ export default function MySidebar({ ...props }) {
       >
         Accounts
       </MenuItem> */}
-        <Link to="/investments" className="ps-active">
+        <Link to="/borrow" className="ps-active">
           <MenuItem
             className="ps-active"
             icon={
@@ -75,7 +75,7 @@ export default function MySidebar({ ...props }) {
               />
             }
           >
-            Investments
+            Borrow
           </MenuItem>
         </Link>
         {/* <MenuItem
@@ -99,7 +99,7 @@ export default function MySidebar({ ...props }) {
               />
             }
           >
-            Loans
+            Lend a Loan
           </MenuItem>
         </Link>
         <Link to="/services">
@@ -112,7 +112,7 @@ export default function MySidebar({ ...props }) {
               />
             }
           >
-            Services
+            Stake
           </MenuItem>
         </Link>
         {/* <MenuItem
@@ -126,7 +126,7 @@ export default function MySidebar({ ...props }) {
       >
         My Privileges
       </MenuItem> */}
-        <Link to="/">
+        <Link to="/profile">
           <MenuItem
             icon={
               <Img
@@ -136,7 +136,7 @@ export default function MySidebar({ ...props }) {
               />
             }
           >
-            Settings
+            Profile
           </MenuItem>
         </Link>
       </Menu>

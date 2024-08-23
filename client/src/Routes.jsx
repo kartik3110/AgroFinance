@@ -7,18 +7,20 @@ import Investments from "pages/Investments";
 import Loan from "pages/Loan";
 import Services from "pages/Services";
 import SettingEditProfile from "pages/SettingEditProfile";
+import Login from "pages/Login.jsx";
+import Borrow from "pages/Borrow";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
-    { path: "home", element: <Home /> },
+    { path: "home", element: <Login /> },
     { path: "*", element: <NotFound /> },
     {
       path: "/",
       element: <MainDashboard />,
     },
     {
-      path: "investments",
-      element: <Investments />,
+      path: "borrow",
+      element: <Borrow />,
     },
     {
       path: "loan",
@@ -29,7 +31,7 @@ const ProjectRoutes = () => {
       element: <Services />,
     },
     {
-      path: "registerUser",
+      path: "profile",
       element: <SettingEditProfile />,
     },
   ]);
