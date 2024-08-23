@@ -1,5 +1,7 @@
 ## AgroFinance
 
+Decentralised finance solution for farmers
+
 ## Description
 
 - This React application is built using [Vite](https://vitejs.dev/).
