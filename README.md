@@ -1,6 +1,4 @@
-## kanika_s_application2
-
-Generated with ❤️ from [DhiWise](https://www.dhiwise.com)
+## AgroFinance
 
 ## Description
 
@@ -24,7 +22,7 @@ Generated with ❤️ from [DhiWise](https://www.dhiwise.com)
 
 This file contains various environment variables that you can configure.
 
-## Folder Structure
+<!-- ## Folder Structure
 
 ```
 .
@@ -54,14 +52,14 @@ This file contains various environment variables that you can configure.
 │   └── util
 │       └── index.jsx ------- Helpful utils
 └── tailwind.config.js ----- Entire theme config, colors, fonts etc.
-```
-
+``` -->
+<!--
 For the project to build, **these files must exist with exact filenames**:
 
 - `index.html` is the page template;
 - `src/index.jsx` is the JavaScript entry point.
 
-You may create subdirectories inside src.
+You may create subdirectories inside src. -->
 
 ## Available Scripts
 
@@ -100,7 +98,7 @@ Alternatively you may use `yarn`:
 yarn add react-router
 ```
 
-## License
+<!-- ## License
 
 MIT License
 
@@ -120,4 +118,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <a href="https://discord.gg/UPhCetBkVu"><img src="https://user-images.githubusercontent.com/47489894/183043664-b01aac56-0372-458a-bde9-3f2a6bded21b.png" width="60" alt="DhiWise Discord"></a>
 
-<a href="https://docs.dhiwise.com/docs/react/intro"><img src="https://global-uploads.webflow.com/618e36726d3c0f19c9284e56/62383865d5477f2e4f6b6e2e_main-monogram-p-500.png" width="60" alt="DhiWise Documentation"></a>
+<a href="https://docs.dhiwise.com/docs/react/intro"><img src="https://global-uploads.webflow.com/618e36726d3c0f19c9284e56/62383865d5477f2e4f6b6e2e_main-monogram-p-500.png" width="60" alt="DhiWise Documentation"></a> -->
