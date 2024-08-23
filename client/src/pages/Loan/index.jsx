@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button, Img } from "../../components";
 import Header from "../../components/Header";
 import { ReactTable } from "../../components/ReactTable";
-import Sidebar1 from "../../components/Sidebar1";
+import Sidebar1 from "../../components/MySidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const table1Data = [
@@ -96,7 +96,7 @@ export default function LoanPage() {
     return [
       table1ColumnHelper.accessor("slno", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -109,7 +109,7 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("loanmoney", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -122,7 +122,7 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("lefttorepay", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -135,7 +135,7 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("duration", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -148,7 +148,7 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("interestrate", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -161,7 +161,7 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("installment", {
         cell: (info) => (
-          <Text as="p" className="!text-blue_gray-900">
+          <Text as="p" className="text-center !text-blue_gray-900">
             {info?.getValue?.()}
           </Text>
         ),
@@ -174,15 +174,16 @@ export default function LoanPage() {
       }),
       table1ColumnHelper.accessor("repay", {
         cell: (info) => (
-          <div className="h-[20px] md:w-full relative">
-            <Text
-              size="lg"
-              as="p"
-              className="left-1/4 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-            >
-              {info?.getValue?.()}
-            </Text>
-            <div className="h-[35px] w-[85%] left-[2%] top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+          <div className="text-center h-[30px] md:w-full relative">
+            <a className=" hover:cursor-pointer">
+              <Text
+                size="lg"
+                as="p"
+                className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+              >
+                {info?.getValue?.()}
+              </Text>
+            </a>
           </div>
         ),
         header: (info) => (

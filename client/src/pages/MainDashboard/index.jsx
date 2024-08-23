@@ -2,12 +2,11 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Text, Img, Heading, Button, Slider } from "../../components";
 import Header from "../../components/Header";
-import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
+import MySidebar from "components/MySidebar";
 
 export default function MainDashboardPage() {
   const [sliderState, setSliderState] = React.useState(0);
   const sliderRef = React.useRef(null);
-  const [collapsed, setCollapsed] = React.useState(false);
 
   return (
     <>
@@ -19,134 +18,7 @@ export default function MainDashboardPage() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full pb-[30px] md:gap-5 sm:pb-5 bg-gray-100">
-        <Sidebar
-          width="252px !important"
-          collapsedWidth="80px !important"
-          collapsed={collapsed}
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-          className="h-screen top-0 bg-white-A700 !sticky overflow-auto"
-        >
-          <Img
-            src="images/img_logo.png"
-            alt="logo_one"
-            className="w-[65%] md:h-auto sm:w-full mt-[30px] mx-auto object-cover"
-          />
-          <Menu
-            menuItemStyles={{
-              button: {
-                padding: "17px 17px 17px 39px",
-                gap: "20px",
-                color: "#888ea2",
-                fontWeight: 500,
-                fontSize: "18px",
-                [`&:hover, &.ps-active`]: { color: "#314ca3" },
-              },
-            }}
-            className="flex flex-col items-center justify-start w-full mt-[50px] mb-[364px]"
-          >
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_vector.svg"
-                  alt="vector_one"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Dashboard
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_glyph.svg"
-                  alt="glyph_one"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Transactions
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_user_3_1.svg"
-                  alt="user3one_one"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Accounts
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_group.svg"
-                  alt="image"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Investments
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_credit_card_1.svg"
-                  alt="creditcardone"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Credit Cards
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_loan_1.svg"
-                  alt="loanone_one"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Loans
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_service_1.svg"
-                  alt="serviceone_one"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Services
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_econometrics_1.svg"
-                  alt="econometricsone"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              My Privileges
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="images/img_vector_blue_gray_400.svg"
-                  alt="vector_three"
-                  className="h-[25px] w-[25px]"
-                />
-              }
-            >
-              Setting
-            </MenuItem>
-          </Menu>
-        </Sidebar>
+        <MySidebar />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[25px]">
           <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
           <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-[25px]">

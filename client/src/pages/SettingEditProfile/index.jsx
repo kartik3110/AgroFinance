@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Button, Input, Text, SelectBox, Img } from "../../components";
 import Header from "../../components/Header";
-import Sidebar1 from "../../components/Sidebar1";
+import Sidebar1 from "../../components/MySidebar";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },

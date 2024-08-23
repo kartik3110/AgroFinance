@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button, Img } from "../../components";
 import Header from "../../components/Header";
 import { ReactTable } from "../../components/ReactTable";
-import Sidebar1 from "../../components/Sidebar1";
+import Sidebar1 from "../../components/MySidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const tableData = [

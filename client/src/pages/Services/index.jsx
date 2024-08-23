@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Text, Button, Img, Heading } from "../../components";
 import Header from "../../components/Header";
-import Sidebar1 from "../../components/Sidebar1";
+import Sidebar1 from "../../components/MySidebar";
 
 export default function ServicesPage() {
   return (
@@ -16,7 +16,7 @@ export default function ServicesPage() {
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
-        <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]">
+        <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]  mb-8">
           <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
           <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">
             <div className="flex flex-row md:flex-col w-full gap-[30px]">
@@ -96,14 +96,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col justify-between items-center w-full p-[15px] md:gap-10 bg-white-A700 rounded-[20px]">
@@ -145,14 +146,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col justify-between items-center w-full p-[15px] md:gap-10 bg-white-A700 rounded-[20px]">
@@ -194,14 +196,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col justify-between items-center w-full p-[15px] md:gap-10 bg-white-A700 rounded-[20px]">
@@ -243,14 +246,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col justify-between items-center w-full p-[15px] md:gap-10 bg-white-A700 rounded-[20px]">
@@ -292,14 +296,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col justify-between items-center w-full p-[15px] md:gap-10 bg-white-A700 rounded-[20px]">
@@ -341,14 +346,15 @@ export default function ServicesPage() {
                     </Text>
                   </div>
                   <div className="h-[35px] w-[14%] md:w-full mr-[15px] relative">
-                    <Text
-                      size="lg"
-                      as="p"
-                      className="justify-center w-max left-0 bottom-0 right-0 top-0 m-auto !text-indigo-500 text-center !font-medium absolute"
-                    >
-                      View Details
-                    </Text>
-                    <div className="justify-center h-[35px] w-full left-0 bottom-0 right-0 top-0 m-auto border-indigo-500 border border-solid absolute rounded-[17px]" />
+                    <a className=" hover:cursor-pointer">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="left-1/4 top-0 m-auto border-indigo-500 border rounded-xl p-2 !text-indigo-500 text-center !font-medium absolute"
+                      >
+                        View Details
+                      </Text>
+                    </a>
                   </div>
                 </div>
               </div>
