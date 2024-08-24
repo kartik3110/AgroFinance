@@ -12,10 +12,9 @@ import Borrow from "pages/Borrow";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
-    { path: "home", element: <Login /> },
-    { path: "*", element: <NotFound /> },
+    { path: "/", element: <Login /> },
     {
-      path: "/",
+      path: "/dashboard",
       element: <MainDashboard />,
     },
     {
@@ -34,6 +33,7 @@ const ProjectRoutes = () => {
       path: "profile",
       element: <SettingEditProfile />,
     },
+    { path: "*", element: <NotFound /> },
   ]);
 
   return element;

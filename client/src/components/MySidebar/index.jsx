@@ -29,7 +29,7 @@ export default function MySidebar({ ...props }) {
         }}
         className="flex flex-col items-center justify-start w-full mt-[50px] mb-[364px]"
       >
-        <Link to="/">
+        <Link to="/dashboard">
           <MenuItem
             icon={
               <Img

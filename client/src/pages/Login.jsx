@@ -1,7 +1,6 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -12,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -22,8 +22,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="#">
+        AgroFinance
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -36,6 +36,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -43,6 +44,7 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    navigate("/dashboard");
   };
 
   return (
@@ -55,12 +57,12 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url("/images/img_logo.png")',
+            backgroundImage: 'url("/images/login.jpg")',
             backgroundColor: (t) =>
               t.palette.mode === "light"
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
-            backgroundSize: "fit",
+            backgroundSize: "cover",
             backgroundPosition: "left",
           }}
         />
