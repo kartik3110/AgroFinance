@@ -40,6 +40,7 @@ module.exports = {
       fontFamily: { inter: "Inter", lato: "Lato" },
       backgroundImage: {
         gradient: "linear-gradient(180deg, #ffffff26,#ffffff26)",
+        "hero-pattern": "url('https://example.com/hero-image.jpg')",
       },
     },
   },

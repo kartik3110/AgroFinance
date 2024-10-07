@@ -1,18 +1,18 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import MainDashboard from "pages/MainDashboard";
-import Investments from "pages/Investments";
 import Loan from "pages/Loan";
 import Services from "pages/Services";
 import SettingEditProfile from "pages/SettingEditProfile";
 import Login from "pages/Login.jsx";
 import Borrow from "pages/Borrow";
+import Home from "pages/Home";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
-    { path: "/", element: <Login /> },
+    { path: "/", element: <Home /> },
+    { path: "/login", element: <Login /> },
     {
       path: "/dashboard",
       element: <MainDashboard />,

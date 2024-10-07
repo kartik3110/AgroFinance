@@ -10,11 +10,20 @@ const sizes = {
   lg: "text-lg font-semibold",
 };
 
-const Heading = ({ children, className = "", size = "2xl", as, ...restProps }) => {
+const Heading = ({
+  children,
+  className = "",
+  size = "2xl",
+  as,
+  ...restProps
+}) => {
   const Component = as || "h6";
 
   return (
-    <Component className={`text-blue_gray-900 font-inter ${className} ${sizes[size]}`} {...restProps}>
+    <Component
+      className={`text-blue_gray-900 font-inter ${className} ${sizes[size]}`}
+      {...restProps}
+    >
       {children}
     </Component>
   );

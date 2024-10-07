@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const shapes = {
   square: "rounded-[0px]",
-  round: "rounded-[20px]",
+  round: "rounded-[10px]",
   circle: "rounded-[50%]",
 };
 const variants = {
@@ -14,6 +14,7 @@ const variants = {
     gray_100_04: "bg-gray-100_04",
   },
   outline: {
+    indigo_600_01: "border-indigo-600_01  border-2 border-solid",
     green_600: "border-green-600 border-2 border-solid",
     red_700: "border-red-700 border-2 border-solid",
   },
@@ -37,12 +38,16 @@ const Button = ({
   shape = "",
   variant = "fill",
   size = "xl",
-  color = "gray_100_04",
+  color = "indigo_600_01",
   ...restProps
 }) => {
   return (
     <button
-      className={`${className} flex items-center justify-center text-center cursor-pointer ${(shape && shapes[shape]) || ""} ${(size && sizes[size]) || ""} ${(variant && variants[variant]?.[color]) || ""}`}
+      className={`${className} flex items-center justify-center text-center cursor-pointer ${
+        (shape && shapes[shape]) || ""
+      } ${(size && sizes[size]) || ""} ${
+        (variant && variants[variant]?.[color]) || ""
+      }`}
       {...restProps}
     >
       {!!leftIcon && leftIcon}
@@ -60,7 +65,14 @@ Button.propTypes = {
   shape: PropTypes.oneOf(["square", "round", "circle"]),
   size: PropTypes.oneOf(["xs", "md", "lg", "2xl", "sm", "4xl", "xl", "3xl"]),
   variant: PropTypes.oneOf(["fill", "outline"]),
-  color: PropTypes.oneOf(["white_A700", "indigo_700", "indigo_600_01", "gray_100_04", "green_600", "red_700"]),
+  color: PropTypes.oneOf([
+    "white_A700",
+    "indigo_700",
+    "indigo_600_01",
+    "gray_100_04",
+    "green_600",
+    "red_700",
+  ]),
 };
 
 export { Button };

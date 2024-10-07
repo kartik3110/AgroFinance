@@ -76,15 +76,15 @@ export default function ImgMediaCard() {
         <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
 
         <div className="flex place-items-center mx-auto justify-center">
-          <Card sx={{ maxWidth: 600, padding: 4 }}>
+          <Card sx={{ maxWidth: 400, padding: 1 }}>
             <CardMedia
               component="img"
               alt="logo"
               height="100"
-              image="/images/img_logo.png"
+              image="/images/login.jpg"
             />
             <CardContent>
-              <Typography gutterBottom variant="h4" component="div">
+              <Typography gutterBottom variant="h5" component="div">
                 Create Borrow Request
               </Typography>
             </CardContent>
@@ -96,7 +96,7 @@ export default function ImgMediaCard() {
               >
                 New Loan +
               </Button>
-              <Button size="medium" variant="contained">
+              <Button size="medium" variant="contained" color="secondary">
                 Repay
               </Button>
             </CardActions>
