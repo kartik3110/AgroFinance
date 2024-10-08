@@ -310,13 +310,13 @@ export default function MainDashboardPage() {
                   </Text>
                 </div>
                 <div className="flex flex-col items-start justify-start w-[15%] sm:w-full ml-11 gap-[5px] md:ml-5">
-                  <Text as="p" className="!font-medium">
-                    <button>✅</button>
-                    <button>❌</button>
+                  <Text as="p" className="!font-medium flex gap-4">
+                    <button>Approve✅</button>
+                    <button>Reject❌</button>
                   </Text>
-                  <Text size="lg" as="p">
+                  {/* <Text size="lg" as="p">
                     Approve Reject
-                  </Text>
+                  </Text> */}
                 </div>
               </div>
               {/* next loan */}
@@ -346,12 +346,9 @@ export default function MainDashboardPage() {
                   </Text>
                 </div>
                 <div className="flex flex-col items-start justify-start w-[15%] sm:w-full ml-11 gap-[5px] md:ml-5">
-                  <Text as="p" className="!font-medium">
-                    <button>✅</button>
-                    <button>❌</button>
-                  </Text>
-                  <Text size="lg" as="p">
-                    Approve Reject
+                  <Text as="p" className="!font-medium flex gap-4">
+                    <button>Approve✅</button>
+                    <button>Reject❌</button>
                   </Text>
                 </div>
               </div>

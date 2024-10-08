@@ -13,15 +13,14 @@ export default function MySidebar({ ...props }) {
   };
 
   return (
-    <div
-      className="h-screen w-[252px] bg-white-A700 sticky top-0 overflow-auto"
-      {...props}
-    >
-      <Img
-        src="images/img_logo.png"
-        alt="logo_one"
-        className="w-[65%] md:h-auto sm:w-full mt-[30px] mx-auto object-cover"
-      />
+    <div className="h-screen w-[252px] bg-white-A700 sticky top-0" {...props}>
+      <Link to="/">
+        <Img
+          src="images/img_logo.png"
+          alt="logo_one"
+          className="w-[65%] md:h-auto sm:w-full mt-[30px] mx-auto object-cover"
+        />
+      </Link>
       <div className="flex flex-col justify-start w-full mt-[50px] mb-[364px]">
         <Link to="/dashboard">
           <div
@@ -68,10 +67,10 @@ export default function MySidebar({ ...props }) {
           </div>
         </Link>
 
-        <Link to="/services">
+        <Link to="/stake">
           <div
             className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
-              "/services"
+              "/stake"
             )} hover:text-[#314ca3]`}
           >
             <Img

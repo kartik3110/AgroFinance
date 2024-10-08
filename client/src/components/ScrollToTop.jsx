@@ -33,7 +33,7 @@ const ScrollToTop = () => {
         <button
           title="Scroll to top"
           onClick={scrollToTop}
-          className="fixed bottom-8 text-xl right-8 py-4 px-5 bg-indigo-600 text-white-A700 rounded-full shadow-lg hover:bg-indigo-700 "
+          className="fixed bottom-8 text-xl right-8 py-4 px-5 bg-indigo-600 text-white-A700 rounded-full shadow-lg hover:bg-indigo-700 duration-200"
           aria-label="Scroll to top"
         >
           ↑

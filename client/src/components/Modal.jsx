@@ -1,3 +1,4 @@
+// this is not being used for now
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
@@ -5,7 +6,7 @@ import Popper from "@mui/material/Popper";
 export default function Modal() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const closeModal = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
@@ -14,9 +15,6 @@ export default function Modal() {
 
   return (
     <div>
-      <button aria-describedby={id} type="button" onClick={handleClick}>
-        Toggle Popper
-      </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
           You need to complete KYC first!

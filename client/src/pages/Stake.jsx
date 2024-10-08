@@ -1,10 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Text, Button, Img, Heading } from "../../components";
-import Header from "../../components/Header";
-import Sidebar1 from "../../components/MySidebar";
+import Header from "../components/Header";
+import Sidebar1 from "../components/MySidebar";
 
-export default function ServicesPage() {
+export default function Stake() {
   return (
     <>
       <Helmet>
@@ -15,7 +14,7 @@ export default function ServicesPage() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
+        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]  mb-8">
           <Header title="Stake" />
           {/* <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">
@@ -360,7 +359,62 @@ export default function ServicesPage() {
               </div>
             </div>
           </div> */}
-          In Progress
+          <div className="flex w-10/12 gap-4">
+            <div className="max-w-xl w-1/3 px-6 py-4 border-0 rounded relative mb-4 bg-gray-300">
+              <span className="inline-block align-middle mt-2 mr-8">
+                <h1 className="text-xl font-bold mb-2">Stake RUP </h1>
+                <span className="text-sm">
+                  Staking RUP helps in ensuring quality loans are approved, and
+                  stakers get to verify them to secure the network.
+                </span>
+              </span>
+            </div>
+            <div className="max-w-xl w-1/3 px-6 py-4 border-0 rounded relative mb-4 bg-gray-300">
+              <span className="inline-block align-middle mt-2 mr-8">
+                <h1 className="text-xl font-bold mb-6">RUP Staked</h1>
+                <span className="text-xl">
+                  <span className="text-3xl text-indigo-600">12 </span>
+                  RUP
+                </span>
+              </span>
+            </div>
+            <div className="max-w-xl w-1/3 px-6 py-4 border-0 rounded relative mb-4 bg-gray-300">
+              <span className="inline-block align-middle mt-2 mr-8">
+                <h1 className="text-xl font-bold mb-6">Withdrawable RUP</h1>
+                <span className="text-xl">
+                  <span className="text-3xl text-indigo-600">12 </span>
+                  RUP
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="max-w-xl w-1/2 px-6 py-4 border-0 rounded relative mb-4 bg-gray-300">
+            <h1 className="text-xl font-bold mb-6">Stake</h1>
+            <div className="flex gap-4 align-middle mt-2 mr-8">
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Stake
+                </label>
+                <input
+                  className="text-gray-700 border bg-gray-50 rounded py-2 px-4 "
+                  type="email"
+                  placeholder="Enter Amount"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Unstake
+                </label>
+                <input
+                  className="text-gray-700 border bg-gray-50 rounded py-2 px-4 "
+                  type="email"
+                  placeholder="Enter Amount"
+                  required
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

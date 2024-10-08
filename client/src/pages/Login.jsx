@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const onLogin = () => {
-    // redirect to dashboard
     navigate("/dashboard");
   };
   return (
-    <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
-      <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-4xl w-full">
+    <div className="flex bg-gray-100 items-center justify-center h-screen w-full px-5 sm:px-0">
+      <div className="flex bg-gray-50 rounded-lg shadow-lg border overflow-hidden max-w-4xl w-full">
         <div
           className="w-1/2 bg-cover bg-center bg-blue-700"
           style={{
@@ -47,7 +46,7 @@ const Login = () => {
           <div className="mt-8">
             <button
               onClick={onLogin}
-              className="bg-blue-700 text-gray-50 font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
+              className="bg-blue-700 transition duration-200 text-gray-50 font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
             >
               Login
             </button>

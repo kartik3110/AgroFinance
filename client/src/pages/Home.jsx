@@ -265,17 +265,17 @@ const Home = () => {
           <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span className="block">Ready To Get Started ?</span>
             <span className="block text-indigo-500">
-              It&#x27;s today or never.
+              Take the first step today!
             </span>
           </h2>
           <p className="text-xl mt-4 max-w-md mx-auto text-gray-400">
-            I had noticed that both in the very poor and very rich extremes of
-            society the mad were often allowed to mingle freely
+            Join us in transforming agriculture - access hassle free loans and
+            grow your future today!
           </p>
           <div className="lg:mt-0 lg:flex-shrink-0">
             <div className="mt-12 inline-flex rounded-md shadow">
               <Button shape="round">
-                <a className="px-4 font-semibold" href="#get-started">
+                <a className="px-4 font-semibold" href="/login  ">
                   Get Started
                 </a>
               </Button>

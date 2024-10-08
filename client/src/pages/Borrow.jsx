@@ -10,6 +10,7 @@ import Header from "components/Header";
 // import Modal from "components/Modal";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
+import { Link } from "react-router-dom";
 
 // function Modal() {
 //   return (
@@ -54,9 +55,11 @@ export default function ImgMediaCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="medium" variant="contained">
-              Complete KYC
-            </Button>
+            <Link to="/kyc">
+              <Button size="medium" variant="contained">
+                Complete KYC
+              </Button>
+            </Link>
             <Button
               size="medium"
               onClick={handleCreateNewLoan}
