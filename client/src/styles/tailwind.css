@@ -20,12 +20,6 @@ textarea,
 select {
   appearance: none;
   background-color: transparent;
-  border-color: unset;
-  border-width: 0;
-  border-radius: unset;
-  padding: unset;
-  font-size: unset;
-  line-height: unset;
 }
 
 /* Override default focus colors for tailwindcss-forms https://github.com/tailwindlabs/tailwindcss-forms */

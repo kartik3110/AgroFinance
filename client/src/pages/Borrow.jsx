@@ -73,8 +73,7 @@ export default function ImgMediaCard() {
     <div className="flex flex-row md:flex-col justify-center items-start w-full pb-[30px] md:gap-5 sm:pb-5 bg-gray-100">
       <MySidebar />
       <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[25px]">
-        <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
-
+        <Header title="Borrow" />
         <div className="flex place-items-center mx-auto justify-center">
           <Card sx={{ maxWidth: 400, padding: 1 }}>
             <CardMedia

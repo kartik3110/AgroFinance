@@ -1,16 +1,13 @@
 import React from "react";
-import { CloseSVG } from "../../assets/images";
-import { Img, Button, Input, Heading } from "./..";
+import { Img, Button, Heading } from "./..";
 import { Link } from "react-router-dom";
 
-export default function Header({ ...props }) {
-  const [searchBarValue, setSearchBarValue] = React.useState("");
-
+export default function Header({ title = "AgroFinance" }) {
   return (
-    <header {...props}>
+    <header className="flex justify-center items-center w-full sm:w-full pt-4 pb-[15px] px-5 border-gray-300 border-b border-solid bg-white-A700">
       <div className="flex flex-row md:flex-col justify-between items-center w-full mx-auto md:gap-10 md:px-5 max-w-[1110px]">
         <Heading size="3xl" as="h3" className="!text-gray-900">
-          AgroFinance
+          {title}
         </Heading>
         <div className="flex flex-row sm:flex-col justify-between items-center w-auto sm:gap-10">
           <Button className="mr-4 border rounded-lg">Connect Wallet</Button>

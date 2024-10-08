@@ -1,134 +1,73 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      <Link color="inherit" href="#">
-        © AgroFinance {new Date().getFullYear()}.
-      </Link>
-    </Typography>
-  );
-}
-
-export default function Login() {
+const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const onLogin = () => {
+    // redirect to dashboard
     navigate("/dashboard");
   };
-
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
-      {/* <CssBaseline /> */}
-      <Grid
-        item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{
-          backgroundImage: 'url("/images/login.jpg")',
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+    <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
+      <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-4xl w-full">
+        <div
+          className="w-1/2 bg-cover bg-center bg-blue-700"
+          style={{
+            backgroundImage: `url(/images/login.jpg)`,
           }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
+        ></div>
+        <div className="p-8 w-1/2">
+          <p className="text-xl text-gray-600 text-center">Welcome back!</p>
+          <div className="mt-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Email Address
+            </label>
+            <input
+              className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full"
+              type="email"
               required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
+          </div>
+          <div className="mt-4 flex flex-col justify-between">
+            <div className="flex justify-between">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Password
+              </label>
+            </div>
+            <input
+              className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full"
               type="password"
-              id="password"
-              autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <a
+              href="#"
+              className="text-xs text-gray-500 hover:text-gray-900 text-end w-full mt-2"
             >
-              Sign In
-            </Button>
-            <Button type="submit" fullWidth variant="contained" sx={{ mb: 2 }}>
-              Sign In as Admin
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ mt: 5 }} />
-          </Box>
-        </Box>
-      </Grid>
-    </Grid>
+              Forget Password?
+            </a>
+          </div>
+          <div className="mt-8">
+            <button
+              onClick={onLogin}
+              className="bg-blue-700 text-gray-50 font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
+            >
+              Login
+            </button>
+          </div>
+          <a
+            href="#"
+            className=" flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
+          ></a>
+          <div className="mt-4 flex items-center w-full text-center">
+            <a
+              href="#"
+              className="text-xs text-gray-500 capitalize text-center w-full"
+            >
+              Don&apos;t have any account yet?
+              <span className="text-blue-700"> Sign Up</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+export default Login;

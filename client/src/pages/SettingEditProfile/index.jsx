@@ -23,7 +23,7 @@ export default function SettingEditProfilePage() {
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
         <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky overflow-auto" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]">
-          <Header className="flex justify-center items-center w-full sm:w-full pt-5 pb-[19px] px-5 border-gray-300 border-b border-solid bg-white-A700" />
+          <Header title="Edit Profile" />
           <div className="flex flex-row justify-center w-[94%] md:w-full">
             <div className="flex flex-col items-center justify-start w-full gap-[51px] p-[30px] sm:p-5 bg-white-A700 rounded-[25px]">
               <div className="flex flex-col items-start justify-start w-full mt-1.5">

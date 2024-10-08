@@ -10,11 +10,11 @@ const variants = {
   fill: {
     white_A700: "bg-white-A700 shadow-xs",
     indigo_700: "bg-indigo-700 shadow-xs text-white-A700",
-    indigo_600_01: "bg-indigo-600_01 text-white-A700",
+    indigo_600: "bg-indigo-600 text-white-A700",
     gray_100_04: "bg-gray-100_04",
   },
   outline: {
-    indigo_600_01: "border-indigo-600_01  border-2 border-solid",
+    indigo_600: "border-indigo-600 border-2 border-solid",
     green_600: "border-green-600 border-2 border-solid",
     red_700: "border-red-700 border-2 border-solid",
   },
@@ -38,12 +38,12 @@ const Button = ({
   shape = "",
   variant = "fill",
   size = "xl",
-  color = "indigo_600_01",
+  color = "indigo_600",
   ...restProps
 }) => {
   return (
     <button
-      className={`${className} flex items-center justify-center text-center cursor-pointer ${
+      className={`${className} flex items-center shadow-md hover:shadow-xl transition ease-in duration-200 justify-center text-center cursor-pointer ${
         (shape && shapes[shape]) || ""
       } ${(size && sizes[size]) || ""} ${
         (variant && variants[variant]?.[color]) || ""
@@ -68,7 +68,7 @@ Button.propTypes = {
   color: PropTypes.oneOf([
     "white_A700",
     "indigo_700",
-    "indigo_600_01",
+    "indigo_600",
     "gray_100_04",
     "green_600",
     "red_700",

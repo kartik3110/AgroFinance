@@ -1,145 +1,103 @@
 import React from "react";
-
-import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
-import { Text, Img } from "..";
+import { Link, useLocation } from "react-router-dom";
+import { Img } from "..";
 
 export default function MySidebar({ ...props }) {
+  const location = useLocation();
+
+  // Function to check if the current route matches the link
+  const activeCss = (path) => {
+    return location.pathname === path
+      ? "text-[#314ca3] italic"
+      : "text-[#888ea2]";
+  };
+
   return (
-    <Sidebar
-      width="252px !important"
-      collapsedWidth="80px !important"
-      className="h-screen top-0 bg-white-A700 !sticky overflow-auto"
+    <div
+      className="h-screen w-[252px] bg-white-A700 sticky top-0 overflow-auto"
+      {...props}
     >
       <Img
         src="images/img_logo.png"
         alt="logo_one"
         className="w-[65%] md:h-auto sm:w-full mt-[30px] mx-auto object-cover"
       />
-      <Menu
-        menuItemStyles={{
-          button: {
-            padding: "17px 17px 17px 39px",
-            gap: "20px",
-            color: "#888ea2",
-            fontWeight: 500,
-            fontSize: "18px",
-            [`&:hover, &.ps-active`]: { color: "#314ca3" },
-          },
-        }}
-        className="flex flex-col items-center justify-start w-full mt-[50px] mb-[364px]"
-      >
+      <div className="flex flex-col justify-start w-full mt-[50px] mb-[364px]">
         <Link to="/dashboard">
-          <MenuItem
-            icon={
-              <Img
-                src="images/img_vector.svg"
-                alt="vector_one"
-                className="h-[25px] w-[25px]"
-              />
-            }
+          <div
+            className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
+              "/dashboard"
+            )} hover:text-[#314ca3]`}
           >
+            <Img
+              src="images/img_vector.svg"
+              alt="vector_one"
+              className="h-[25px] w-[25px]"
+            />
             Dashboard
-          </MenuItem>
+          </div>
         </Link>
-        {/* <MenuItem
-        icon={
-          <Img
-            src="images/img_glyph.svg"
-            alt="glyph_one"
-            className="h-[25px] w-[25px]"
-          />
-        }
-      >
-        Transactions
-      </MenuItem> */}
-        {/* <MenuItem
-        icon={
-          <Img
-            src="images/img_user_3_1.svg"
-            alt="user3one_one"
-            className="h-[25px] w-[25px]"
-          />
-        }
-      >
-        Accounts
-      </MenuItem> */}
-        <Link to="/borrow" className="ps-active">
-          <MenuItem
-            className="ps-active"
-            icon={
-              <Img
-                src="images/img_group.svg"
-                alt="image"
-                className="h-[25px] w-[25px] ps-active"
-              />
-            }
+
+        <Link to="/borrow">
+          <div
+            className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
+              "/borrow"
+            )} hover:text-[#314ca3]`}
           >
+            <Img
+              src="images/img_group.svg"
+              alt="borrow_one"
+              className="h-[25px] w-[25px]"
+            />
             Borrow
-          </MenuItem>
+          </div>
         </Link>
-        {/* <MenuItem
-        icon={
-          <Img
-            src="images/img_credit_card_1.svg"
-            alt="creditcardone"
-            className="h-[25px] w-[25px]"
-          />
-        }
-      >
-        Credit Cards
-      </MenuItem> */}
+
         <Link to="/loan">
-          <MenuItem
-            icon={
-              <Img
-                src="images/img_loan_1.svg"
-                alt="loanone_one"
-                className="h-[25px] w-[25px]"
-              />
-            }
+          <div
+            className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
+              "/loan"
+            )} hover:text-[#314ca3]`}
           >
+            <Img
+              src="images/img_loan_1.svg"
+              alt="loan_one"
+              className="h-[25px] w-[25px]"
+            />
             Lend a Loan
-          </MenuItem>
+          </div>
         </Link>
+
         <Link to="/services">
-          <MenuItem
-            icon={
-              <Img
-                src="images/img_service_1.svg"
-                alt="serviceone_one"
-                className="h-[25px] w-[25px]"
-              />
-            }
+          <div
+            className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
+              "/services"
+            )} hover:text-[#314ca3]`}
           >
+            <Img
+              src="images/img_service_1.svg"
+              alt="service_one"
+              className="h-[25px] w-[25px]"
+            />
             Stake
-          </MenuItem>
+          </div>
         </Link>
-        {/* <MenuItem
-        icon={
-          <Img
-            src="images/img_econometrics_1.svg"
-            alt="econometricsone"
-            className="h-[25px] w-[25px]"
-          />
-        }
-      >
-        My Privileges
-      </MenuItem> */}
+
         <Link to="/profile">
-          <MenuItem
-            icon={
-              <Img
-                src="images/img_vector_blue_gray_400.svg"
-                alt="vector_three"
-                className="h-[25px] w-[25px]"
-              />
-            }
+          <div
+            className={`flex items-center p-[17px] gap-[20px] text-[18px] font-medium ${activeCss(
+              "/profile"
+            )} hover:text-[#314ca3]`}
           >
+            <Img
+              src="images/img_vector_blue_gray_400.svg"
+              alt="profile_one"
+              className="h-[25px] w-[25px]"
+            />
             Profile
-          </MenuItem>
+          </div>
         </Link>
-      </Menu>
-    </Sidebar>
+      </div>
+    </div>
   );
 }
