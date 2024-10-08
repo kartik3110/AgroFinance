@@ -1,9 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Text, Heading, Button, Img } from "../../components";
-import Header from "../../components/Header";
+import { Text, Heading, Button, Img, Header } from "../../components";
 import { ReactTable } from "../../components/ReactTable";
-import Sidebar1 from "../../components/MySidebar";
+import MySidebar from "../../components/MySidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const table1Data = [
@@ -173,13 +172,18 @@ export default function LoanPage() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
+        <MySidebar className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]">
           <Header title="Lend" />
           <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">
             <div className="flex flex-row md:flex-col w-full gap-[30px]">
-              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
-                <Button size="4xl" shape="circle" className="w-[70px]">
+              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
+                <Button
+                  size="4xl"
+                  color="gray"
+                  shape="circle"
+                  className="w-[70px]"
+                >
                   <Img src="images/img_user_3_2.svg" />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-[57%] gap-[7px]">
@@ -189,7 +193,7 @@ export default function LoanPage() {
                   </Heading>
                 </div>
               </div>
-              {/* <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[21px] sm:p-5 bg-white-A700 rounded-[25px]">
+              {/* <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[21px] sm:p-5 bg-gray-50 rounded-[25px]">
                 <Button size="4xl" shape="circle" className="w-[70px] my-1">
                   <Img src="images/img_briefcase_1.svg" />
                 </Button>
@@ -200,8 +204,13 @@ export default function LoanPage() {
                   </Heading>
                 </div>
               </div> */}
-              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
-                <Button size="4xl" shape="circle" className="w-[70px]">
+              <div className="flex flex-row justify-start items-center w-[23%] md:w-full gap-[15px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
+                <Button
+                  color="gray"
+                  size="4xl"
+                  shape="circle"
+                  className="w-[70px]"
+                >
                   <Img src="images/img_graph_1.svg" />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-[58%] gap-[7px]">
@@ -214,7 +223,7 @@ export default function LoanPage() {
             </div>
             <div className="flex flex-col items-start justify-start w-full gap-3.5">
               <Heading as="h5">Active Loans Overview</Heading>
-              <div className="flex flex-row justify-center w-full p-5 bg-white-A700 rounded-[25px]">
+              <div className="flex flex-row justify-center w-full p-5 bg-gray-50 rounded-[25px]">
                 <ReactTable
                   size="xs"
                   bodyProps={{ className: "md:flex-col" }}

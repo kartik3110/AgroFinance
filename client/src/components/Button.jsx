@@ -8,10 +8,11 @@ const shapes = {
 };
 const variants = {
   fill: {
-    white_A700: "bg-white-A700 shadow-xs",
+    white: "bg-white-A700 shadow-xs",
     indigo_700: "bg-indigo-700 shadow-xs text-white-A700",
     indigo_600: "bg-indigo-600 text-white-A700",
     gray_100_04: "bg-gray-100_04",
+    gray: "bg-gray-200 shadow-xs",
   },
   outline: {
     indigo_600: "border-indigo-600 border-2 border-solid",
@@ -66,7 +67,8 @@ Button.propTypes = {
   size: PropTypes.oneOf(["xs", "md", "lg", "2xl", "sm", "4xl", "xl", "3xl"]),
   variant: PropTypes.oneOf(["fill", "outline"]),
   color: PropTypes.oneOf([
-    "white_A700",
+    "white",
+    "gray",
     "indigo_700",
     "indigo_600",
     "gray_100_04",

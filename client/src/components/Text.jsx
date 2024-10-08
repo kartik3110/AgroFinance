@@ -24,4 +24,4 @@ const Text = ({ children, className = "", as, size = "xl", ...restProps }) => {
   );
 };
 
-export { Text };
+export default Text;

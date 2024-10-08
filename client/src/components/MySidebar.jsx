@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Img } from "..";
+import { Img } from ".";
 
 export default function MySidebar({ ...props }) {
   const location = useLocation();

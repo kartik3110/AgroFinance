@@ -5,12 +5,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import MySidebar from "components/MySidebar";
-import Header from "components/Header";
+import MySidebar from "../components/MySidebar";
 // import Modal from "components/Modal";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import { Link } from "react-router-dom";
+import { Header } from "components";
 
 // function Modal() {
 //   return (

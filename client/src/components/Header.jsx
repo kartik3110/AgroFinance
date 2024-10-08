@@ -1,5 +1,5 @@
 import React from "react";
-import { Img, Button, Heading } from "./..";
+import { Img, Button, Heading } from ".";
 import { Link } from "react-router-dom";
 
 export default function Header({ title = "AgroFinance" }) {

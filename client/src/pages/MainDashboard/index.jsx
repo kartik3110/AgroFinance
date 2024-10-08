@@ -1,13 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Text, Img, Heading, Button } from "../../components";
-import Header from "../../components/Header";
-import MySidebar from "components/MySidebar";
+import { Text, Img, Heading, Button, Header } from "../../components";
+import MySidebar from "../../components/MySidebar";
 
 export default function MainDashboardPage() {
-  const [sliderState, setSliderState] = React.useState(0);
-  const sliderRef = React.useRef(null);
-
   return (
     <>
       <Helmet>
@@ -35,10 +31,10 @@ export default function MainDashboardPage() {
                   </div> */}
 
                   <div className="flex flex-row md:flex-col w-full gap-[10px]">
-                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
+                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
                       <Button
                         size="xl"
-                        color="white"
+                        color="gray"
                         shape="circle"
                         className="w-[70px]"
                       >
@@ -55,10 +51,10 @@ export default function MainDashboardPage() {
                         <Text as="p">200</Text>
                       </div>
                     </div>
-                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
+                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
                       <Button
                         size="xl"
-                        color="white"
+                        color="gray"
                         shape="circle"
                         className="w-[70px]"
                       >
@@ -75,10 +71,10 @@ export default function MainDashboardPage() {
                         <Text as="p">200</Text>
                       </div>
                     </div>
-                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-white-A700 rounded-[25px]">
+                    <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
                       <Button
                         size="xl"
-                        color="white"
+                        color="gray"
                         shape="circle"
                         className="w-[70px]"
                       >
@@ -284,11 +280,11 @@ export default function MainDashboardPage() {
             {/* pending requests */}
             <Heading as="h4">Pending Requests</Heading>
             <div className="flex flex-col w-full gap-[15px]">
-              <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-white-A700 rounded-[20px]">
+              <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-gray-50 rounded-[20px]">
                 <Button
                   size="3xl"
                   shape="round"
-                  color="white"
+                  color="gray"
                   className="w-[60px]"
                 >
                   <Img src="images/img_group_245.svg" />
@@ -320,10 +316,10 @@ export default function MainDashboardPage() {
                 </div>
               </div>
               {/* next loan */}
-              <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-white-A700 rounded-[20px]">
+              <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-gray-50 rounded-[20px]">
                 <Button
                   size="3xl"
-                  color="white"
+                  color="gray"
                   shape="round"
                   className="w-[60px]"
                 >

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Header from "../components/Header";
-import Sidebar1 from "../components/MySidebar";
+import MySidebar from "../components/MySidebar";
+import { Header } from "components";
 
 export default function Stake() {
   return (
@@ -14,7 +14,7 @@ export default function Stake() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
+        <MySidebar className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]  mb-8">
           <Header title="Stake" />
           {/* <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-6">

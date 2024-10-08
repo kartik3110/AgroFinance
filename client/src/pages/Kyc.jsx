@@ -1,10 +1,10 @@
-import Header from "../components/Header";
-import Sidebar1 from "../components/MySidebar";
+import { Header } from "components";
+import MySidebar from "../components/MySidebar";
 
 export default function Kyc() {
   return (
     <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-      <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
+      <MySidebar className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
       <div className="flex flex-col items-center justify-start w-[83%] md:w-full ">
         <Header title="KYC" />
         <div className="p-8 w-1/2">

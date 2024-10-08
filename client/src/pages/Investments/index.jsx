@@ -1,9 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Text, Heading, Button, Img } from "../../components";
-import Header from "../../components/Header";
+import { Text, Heading, Button, Img, Header } from "../../components";
 import { ReactTable } from "../../components/ReactTable";
-import Sidebar1 from "../../components/MySidebar";
+import MySidebar from "../../components/MySidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const tableData = [
@@ -83,7 +82,7 @@ export default function InvestmentsPage() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
+        <MySidebar className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]">
           <Header title="Invest" />
           <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-[26px]">

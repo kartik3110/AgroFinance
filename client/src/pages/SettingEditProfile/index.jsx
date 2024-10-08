@@ -1,8 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Button, Input, Text, SelectBox, Img } from "../../components";
-import Header from "../../components/Header";
-import Sidebar1 from "../../components/MySidebar";
+import { Button, Input, Text, Header } from "../../components";
+import MySidebar from "../../components/MySidebar";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -21,7 +20,7 @@ export default function SettingEditProfilePage() {
         />
       </Helmet>
       <div className="flex flex-row md:flex-col justify-center items-start w-full md:gap-5 bg-gray-100">
-        <Sidebar1 className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
+        <MySidebar className="w-[252px] h-screen top-0 bg-white-A700 !sticky" />
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[31px]">
           <Header title="Edit Profile" />
           <div className="flex flex-row justify-center w-[94%] md:w-full">
@@ -142,7 +141,7 @@ export default function SettingEditProfilePage() {
                     </div>
                   </div>
                   <Button
-                    color="indigo_600_01"
+                    color="indigo_600"
                     size="lg"
                     className="mt-[30px] sm:px-5 font-medium min-w-[190px] rounded-[15px] sm:min-w-full"
                   >
