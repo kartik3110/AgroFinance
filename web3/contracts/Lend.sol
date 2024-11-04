@@ -1,38 +1,32 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
-
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "./User.sol";
 
-contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
+contract Lend is ChainlinkClient, ERC20("AGRICOLA", "AGC") {
     using SafeERC20 for IERC20;
-
-    Stake public stakeContract;
+    User public userContract;
 
     uint256 public constant MIN_VOTES = 1;
-    uint256 public constant EARNING_RATE = 125; // 1.25% (to avoid float operations)
-    uint256 public constant STAKER_INTEREST_SHARE = 30; // 30% of interest goes to stakers
-    uint256 public constant INTEREST_DENOMINATOR = 100;
 
     address public governance;
-    uint256 public FEES_NUMERATOR = 30; // 3% protocol fees on withdraw
+    uint256 public FEES_NUMERATOR = 30; // 3% protocl fees on withdraw
     uint256 public FEES_DENOMINATOR = 1000;
+    uint256 public constant FIXED_INTEREST_RATE = 6;
 
     mapping(address => mapping(address => uint256)) public lendingBalance;
     mapping(address => uint256) public uniqueTokensLent;
     mapping(address => address) public tokenPriceFeedMapping;
-    mapping(address => uint256) public lenderEarnings;
     address[] public allowedTokens;
     address[] public lenders;
     mapping(address => uint16) public tokenMultiplier;
-    mapping(address => uint256) public borrowerCreditScores;
 
     event Lent(address indexed user, uint256 amount);
     event Withdrawn(address indexed user, uint256 amount, uint256 fees);
-    event CreditScoreUpdated(address indexed borrower, uint256 creditScore);
 
     mapping(address => bool) public auth;
 
@@ -43,13 +37,13 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
         uint256 totalAmount;
         uint256 endTimestamp;
         uint256 currentVoteCount;
-        uint256 totalVotesRequired;
+        //uint256 totalVotesRequired;
         uint256 totalAmountVoted;
         address borrower;
         bool active;
         bool repaid;
         bool approved;
-        string ipfsHash;
+        string mongoId;
     }
 
     event newLoanRequest(uint256 indexed loanId);
@@ -64,18 +58,14 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
     mapping(address => mapping(uint256 => uint256)) public votes;
     mapping(uint256 => address[]) public voters;
 
-     constructor(address _stakeContractAddress) {
-        governance = msg.sender;
-        auth[msg.sender] = true;
-        _mint(address(this), 1e28);
-
-        stakeContract = Stake(_stakeContractAddress); // Initialize stake contract
-    }
-
     constructor() {
         governance = msg.sender;
         auth[msg.sender] = true;
         _mint(address(this), 1e28);
+    }
+
+    constructor(address _userContract) {
+        userContract = User(_userContract); // Set the User contract reference
     }
 
     modifier onlyAuth() {
@@ -111,6 +101,10 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
 
     function lendTokens(uint256 _amount, address _token) external {
         // important require checks
+        require(
+            userContract.getUserRole(msg.sender) == User.Role.Lender,
+            "Only lenders can lend tokens"
+        );
         require(_amount > 0, "lend: amount cannot be 0");
         require(tokenIsAllowed(_token), "lend: unauthorized token");
 
@@ -124,9 +118,6 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
         // keep 1-1
         uint256 sharesToMint = getSharesToMint(_token, _amount);
         _mint(msg.sender, sharesToMint);
-
-        // Calculate and update lender's earnings
-        updateLenderEarnings(msg.sender, _token, _amount);
     }
 
     function getSharesToMint(
@@ -146,6 +137,10 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
     }
 
     function withdrawShares(address token, uint amount) external {
+        require(
+            userContract.getUserRole(msg.sender) == User.Role.Lender,
+            "Only lenders can Withdraw Shares"
+        );
         require(balanceOf(msg.sender) >= amount, "lend: no outstanding shares");
 
         uint256 fees = processFeesAmount(amount);
@@ -270,169 +265,139 @@ contract Lend is ChainlinkClient, ERC20("AGROFINANCE", "AGR") {
     function createBorrowRequest(
         address token,
         uint256 principal,
-        uint256 rateInBasisPoints,
-        uint256 totalAmount,
         uint256 endTimestamp,
-        uint256 totalVotesRequired,
         address borrower,
-        string memory ipfsHash
+        string memory mongoId
     ) external {
+        //require(totalVotesRequired >= MIN_VOTES, "lend: invalid min votes");
         require(
-            msg.sender == borrower || auth[msg.sender],
-            "lend: Not allowed"
+            userContract.getUserRole(msg.sender) == User.Role.Borrower,
+            "Only Borrower can create Borrow Request"
         );
-        require(principal > 0, "lend: principal cannot be 0");
-        require(rateInBasisPoints > 0, "lend: rate cannot be 0");
-        require(totalAmount > 0, "lend: total amount cannot be 0");
-        require(endTimestamp > block.timestamp, "lend: Invalid end date");
-        require(totalVotesRequired >= MIN_VOTES, "lend: Not enough votes");
-        require(borrowerCreditScores[borrower] > 0, "lend: Invalid borrower");
-
-        loans[++loanId] = Loan({
-            token: token,
-            principal: principal,
-            rateInBasisPoints: rateInBasisPoints,
-            totalAmount: totalAmount,
-            endTimestamp: endTimestamp,
-            currentVoteCount: 0,
-            totalVotesRequired: totalVotesRequired,
-            totalAmountVoted: 0,
-            borrower: borrower,
-            active: false,
-            repaid: false,
-            approved: false,
-            ipfsHash: ipfsHash
-        });
-
+        Loan memory loan = Loan(
+            token,
+            principal,
+            FIXED_INTEREST_RATE,
+            principal + (principal * 0.06),
+            endTimestamp,
+            0 /* currentVoteCount */,
+            0 /* totalAmountVoted */,
+            borrower,
+            true /* active */,
+            false /* repaid */,
+            false /* approved */,
+            mongoId
+        );
+        loans[loanId++] = loan;
         emit newLoanRequest(loanId);
     }
 
-    function voteForLoan(uint256 _loanId, uint256 _voteAmount) external {
-        Loan storage _loan = loans[_loanId];
+    function logVote(
+        uint256 _loanId,
+        address _staker,
+        uint256 _amount
+    ) external onlyAuth {
         require(
-            _loan.endTimestamp > block.timestamp,
-            "lend: Loan approval time ended"
+            userContract.getUserRole(msg.sender) == User.Role.Staker,
+            "Only Stakers can log Vote"
         );
-        require(!_loan.approved, "lend: Loan already approved");
-        require(votes[msg.sender][_loanId] == 0, "lend: Already voted");
-        require(_voteAmount > 0, "lend: Vote amount cannot be 0");
-        require(_loan.active, "lend: Loan is not active");
+        require(votes[_staker][_loanId] == 0, "lend: already voted");
+        Loan storage loan = loans[_loanId];
+        require(
+            loan.token != address(0) && loan.active && !loan.repaid,
+            "loan: invalid loan"
+        );
 
-        _loan.currentVoteCount++;
-        _loan.totalAmountVoted += _voteAmount;
-        votes[msg.sender][_loanId] = _voteAmount;
-        voters[_loanId].push(msg.sender);
-
-        if (_loan.currentVoteCount >= _loan.totalVotesRequired) {
-            _loan.approved = true;
+        require(balanceOf(_staker) > 0, "lend: no stake");
+        transferFrom(_staker, address(this), _amount);
+        votes[_staker][_loanId] = _amount;
+        voters[_loanId].push(_staker);
+        loan.totalAmountVoted += _amount;
+        loan.currentVoteCount++;
+        uint256 totalStakers = voters[_loanId].length;
+        if (
+            loan.currentVoteCount > totalStakers / 2 &&
+            loan.totalAmountVoted >= loan.principal
+        ) {
+            loan.approved = true;
+            IERC20(loan.token).transfer(loan.borrower, loan.principal);
             emit loanApproved(_loanId);
         }
     }
 
-    function fundApprovedLoan(uint256 _loanId) external onlyAuth {
-        Loan storage _loan = loans[_loanId];
-        require(_loan.approved, "lend: Loan is not approved");
-        require(!_loan.repaid, "lend: Loan is already repaid");
-
-        IERC20(_loan.token).safeTransfer(_loan.borrower, _loan.principal);
-    }
-
-    function repayLoan(uint256 _loanId) external {
-        Loan storage _loan = loans[_loanId];
-        require(_loan.approved, "lend: Loan is not approved");
-        require(!_loan.repaid, "lend: Loan already repaid");
+    function payBack(uint256 _loanId) external {
         require(
-            msg.sender == _loan.borrower || auth[msg.sender],
-            "lend: Not allowed"
+            userContract.getUserRole(msg.sender) == User.Role.Borrower,
+            "Only Borrowers can Repay Loan"
         );
+        Loan memory loan = loans[_loanId];
+        require(loan.approved, "lend: loan not approved");
+        address borrower = loan.borrower;
+        require(msg.sender == borrower, "lend: only borrower can payback loan");
 
-        _loan.repaid = true;
-        uint256 repaymentAmount = _loan.totalAmount;
-        IERC20(_loan.token).safeTransferFrom(
-            _loan.borrower,
+        // Calculate the charge fee
+        uint256 chargeFee = (loan.totalAmount * FEES_NUMERATOR) /
+            FEES_DENOMINATOR;
+        uint256 totalRepayment = loan.totalAmount + chargeFee;
+
+        // Transfer total repayment from borrower
+        IERC20(loan.token).transferFrom(
+            borrower,
             address(this),
-            repaymentAmount
+            totalRepayment
         );
+        // Distribute the charge fee to stakers
+        distributeRewards(_loanId, chargeFee, loan.token);
+
+        // Mark loan as repaid
+        loans[_loanId].repaid = true;
+        loans[_loanId].active = false;
         emit loanRepaid(_loanId);
     }
 
-    function liquidateLoan(uint256 _loanId) external onlyAuth {
-        Loan storage _loan = loans[_loanId];
-        require(_loan.approved, "lend: Loan is not approved");
-        require(!_loan.repaid, "lend: Loan already repaid");
+    function liquidateLoan(uint256 _loanId) external {
+        Loan memory loan = loans[_loanId];
+        require(
+            loan.active && !loan.repaid && block.timestamp > loan.endTimestamp,
+            "lend: cannot liquidate loan"
+        );
+        address[] memory stakers = voters[_loanId];
+        uint256 len = stakers.length;
+        uint256 principalAmount = loan.principal;
+        uint256 totalAmountVoted = loan.totalAmountVoted;
+        unchecked {
+            for (uint256 i; i < len; ) {
+                address staker = stakers[i];
+                uint256 amountStaked = votes[staker][_loanId];
+                uint256 amountSlashed = (principalAmount * amountStaked) /
+                    totalAmountVoted;
+                uint256 remaining = amountStaked - amountSlashed;
+                transfer(staker, remaining);
+                i++;
+            }
+        }
 
-        uint256 repaymentAmount = _loan.totalAmount;
-        _loan.repaid = true;
-        IERC20(_loan.token).safeTransfer(governance, repaymentAmount);
-
+        loans[_loanId].active = false;
         emit loanLiquidated(_loanId);
     }
 
-    function updateCreditScore(
-        address borrower,
-        uint256 creditScore
-    ) external onlyAuth {
-        require(creditScore > 0, "lend: credit score cannot be 0");
-        borrowerCreditScores[borrower] = creditScore;
-        emit CreditScoreUpdated(borrower, creditScore);
-    }
-
-    function updateFees(
-        uint256 numerator,
-        uint256 denominator
-    ) external onlyGovernance {
-        require(numerator > 0, "lend: numerator cannot be 0");
-        require(denominator > 0, "lend: denominator cannot be 0");
-
-        FEES_NUMERATOR = numerator;
-        FEES_DENOMINATOR = denominator;
-    }
-
-    function updateLenderEarnings(
-        address lender,
-        address token,
-        uint256 amount
+    //staker earning
+    function distributeRewards(
+        uint256 _loanId,
+        uint256 _rewardAmount,
+        address _token
     ) internal {
-        uint256 earnings = (amount * EARNING_RATE) / 10000;
-        lenderEarnings[lender] += earnings;
+        address[] memory stakers = voters[_loanId];
+        uint256 len = stakers.length;
+        uint256 totalAmountVoted = loans[_loanId].totalAmountVoted;
+
+        // Distribute rewards proportionally to the staked amount
+        for (uint256 i = 0; i < len; i++) {
+            address staker = stakers[i];
+            uint256 stakedAmount = votes[staker][_loanId];
+            uint256 stakerReward = (_rewardAmount * stakedAmount) /
+                totalAmountVoted;
+            IERC20(_token).transfer(staker, stakerReward);
+        }
     }
-
-    function claimEarnings(address token) external {
-        uint256 earnings = lenderEarnings[msg.sender];
-        require(earnings > 0, "lend: No earnings to claim");
-
-        lenderEarnings[msg.sender] = 0;
-        IERC20(token).safeTransfer(msg.sender, earnings);
-    }
-    function repayLoan(uint256 _loanId) external {
-        Loan storage _loan = loans[_loanId];
-        require(_loan.approved, "lend: Loan is not approved");
-        require(!_loan.repaid, "lend: Loan already repaid");
-        require(
-            msg.sender == _loan.borrower || auth[msg.sender],
-            "lend: Not allowed"
-        );
-
-        _loan.repaid = true;
-        uint256 repaymentAmount = _loan.totalAmount;
-
-        // Calculate the interest paid
-        uint256 interestPaid = repaymentAmount - _loan.principal;
-
-        // Calculate 30% of the interest for stakers
-        uint256 stakerShare = (interestPaid * STAKER_INTEREST_SHARE) / INTEREST_DENOMINATOR;
-
-        // Transfer the repayment amount from borrower to contract
-        IERC20(_loan.token).safeTransferFrom(
-            _loan.borrower,
-            address(this),
-            repaymentAmount
-        );
-
-        // Distribute the staker share
-        stakeContract.distributeInterest(_loan.token, stakerShare);
-
-        emit loanRepaid(_loanId);
-    }
-}
 }
