@@ -387,17 +387,46 @@ contract Lend is ChainlinkClient, ERC20("AGRICOLA", "AGC") {
         uint256 _rewardAmount,
         address _token
     ) internal {
-        address[] memory stakers = voters[_loanId];
-        uint256 len = stakers.length;
-        uint256 totalAmountVoted = loans[_loanId].totalAmountVoted;
+        uint256 earnings = (amount * EARNING_RATE) / 10000;
+        lenderEarnings[lender] += earnings;
+    }
 
-        // Distribute rewards proportionally to the staked amount
-        for (uint256 i = 0; i < len; i++) {
-            address staker = stakers[i];
-            uint256 stakedAmount = votes[staker][_loanId];
-            uint256 stakerReward = (_rewardAmount * stakedAmount) /
-                totalAmountVoted;
-            IERC20(_token).transfer(staker, stakerReward);
-        }
+    function claimEarnings(address token) external {
+        uint256 earnings = lenderEarnings[msg.sender];
+        require(earnings > 0, "lend: No earnings to claim");
+
+        lenderEarnings[msg.sender] = 0;
+        IERC20(token).safeTransfer(msg.sender, earnings);
+    }
+    function repayLoan(uint256 _loanId) external {
+        Loan storage _loan = loans[_loanId];
+        require(_loan.approved, "lend: Loan is not approved");
+        require(!_loan.repaid, "lend: Loan already repaid");
+        require(
+            msg.sender == _loan.borrower || auth[msg.sender],
+            "lend: Not allowed"
+        );
+
+        _loan.repaid = true;
+        uint256 repaymentAmount = _loan.totalAmount;
+
+        // Calculate the interest paid
+        uint256 interestPaid = repaymentAmount - _loan.principal;
+
+        // Calculate 30% of the interest for stakers
+        uint256 stakerShare = (interestPaid * STAKER_INTEREST_SHARE) / INTEREST_DENOMINATOR;
+
+        // Transfer the repayment amount from borrower to contract
+        IERC20(_loan.token).safeTransferFrom(
+            _loan.borrower,
+            address(this),
+            repaymentAmount
+        );
+
+        // Distribute the staker share
+        stakeContract.distributeInterest(_loan.token, stakerShare);
+
+        emit loanRepaid(_loanId);
     }
 }
+

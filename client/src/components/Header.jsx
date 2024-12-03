@@ -1,6 +1,7 @@
 import React from "react";
 import { Img, Button, Heading } from ".";
 import { Link } from "react-router-dom";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Header({ title = "AgroFinance" }) {
   return (
@@ -10,7 +11,8 @@ export default function Header({ title = "AgroFinance" }) {
           {title}
         </Heading>
         <div className="flex flex-row sm:flex-col justify-between items-center w-auto sm:gap-10">
-          <Button className="mr-4 border rounded-lg">Connect Wallet</Button>
+ 
+          <ConnectButton />
           <Link to="/profile">
             <Img
               src="images/profileAvatar.png"

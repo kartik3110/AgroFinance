@@ -1,4 +1,6 @@
 require("@matterlabs/hardhat-zksync-solc");
+require("dotenv").config();
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -23,6 +25,12 @@ module.exports = {
       ethNetwork: "mainnet",
       chainId: 324,
       zksync: true,
+    },
+    testnet: {
+      url: "https://data-seed-prebsc-1-s2.binance.org:8545/",
+      chainId: 97,
+      // gasLimit: 500000,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   paths: {
