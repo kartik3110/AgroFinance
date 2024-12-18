@@ -8,6 +8,8 @@ import { WagmiProvider } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum, base,polygonMumbai,bscTestnet } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
+import {Toaster, toast} from 'react-hot-toast'
+
 export const config = getDefaultConfig({
   appName: "Agro Finance",
   projectId: "1ade470e0a2103b5f8113ed21f634435",
@@ -21,6 +23,7 @@ function App() {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
+          <Toaster/>
           <Router>
             <Routes />
           </Router>

@@ -13,13 +13,13 @@ export default function Header({ title = "AgroFinance" }) {
         <div className="flex flex-row sm:flex-col justify-between items-center w-auto sm:gap-10">
  
           <ConnectButton />
-          <Link to="/profile">
+          {/* <Link to="/profile">
             <Img
               src="images/profileAvatar.png"
               alt="circleimage"
               className="h-[45px] w-[45px] md:h-auto rounded-[50%]"
             />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>

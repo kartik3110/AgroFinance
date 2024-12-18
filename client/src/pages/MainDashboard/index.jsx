@@ -2,8 +2,57 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Text, Img, Heading, Button, Header } from "../../components";
 import MySidebar from "../../components/MySidebar";
+import { useState } from "react";
+import UserService from "services/UserService";
+import toast from "react-hot-toast";
+import { useAccount } from "wagmi";
 
 export default function MainDashboardPage() {
+  const [address, setAddress] = useState("");
+  const [role, setRole] = useState("");
+  const [fetchedRole, setFetchedRole] = useState(null);
+  const { address: account } = useAccount();
+
+  const handleCreateUser = async () => {
+    try {
+      const tx = await UserService?.createUser();
+      await tx.wait();
+      toast.success("User created successfully!");
+    } catch (error) {
+      console.error("Error creating user:", error);
+      toast.error(`Failed to create user: ${error.message}`);
+    }
+  };
+
+  const handleGetRole = async () => {
+    try {
+      const data = await UserService?.fetchUserRole(account);
+      console.log("data is---->", data);
+      const roleString = ["None", "Lender", "Borrower", "Staker"][data];
+      setFetchedRole(roleString);
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+      toast.error("Failed to fetch user role.");
+    }
+  };
+
+  const handleSetRole = async () => {
+    try {
+      if (!["1", "2", "3"].includes(role)) {
+        toast.error(
+          "Invalid role. Use 1 for Lender, 2 for Borrower, 3 for Staker."
+        );
+        return;
+      }
+      const tx = await UserService?.setUserRole(address, parseInt(role));
+      // await tx.wait();
+      toast.success("Role updated successfully!");
+    } catch (error) {
+      console.error("Error setting user role:", error);
+      toast.error("Failed to update role.");
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -18,18 +67,71 @@ export default function MainDashboardPage() {
         <div className="flex flex-col items-center justify-start w-[83%] md:w-full gap-[25px]">
           <Header title="Dashboard" />
           <div className="flex flex-col items-center justify-start w-[94%] md:w-full gap-[25px]">
-            <div className="flex flex-row md:flex-col justify-start items-center w-full gap-[30px] md:gap-5">
+            <section className="my-4 flex flex-col gap-4 justify-start w-full">
+              {/* Create User */}
+             <div className="p-4 bg-gray-300 rounded w-1/2 mb-8">
+             <h3>
+                <span className="text-2xl font-semibold">New here?</span>
+                <br />
+                Note: upon registration, default role is lender.
+              </h3>
+              <Button
+                className="mt-4 w-full"
+                shape="round"
+                onClick={handleCreateUser}
+              >
+                Register Now!
+              </Button>
+             </div>
+              {/* Get User Role */}
+              <h3 className="font-bold text-lg">Get User Role</h3>
+              <input
+                type="text"
+                className="w-1/2"
+                placeholder="Enter user address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <Button
+                shape="round"
+                className="w-1/2 mb-8"
+                onClick={handleGetRole}
+              >
+                Get Role
+              </Button>
+              {fetchedRole && (
+                <p className="text-xl -mt-6 mb-4">
+                  <span className="font-semibold">User Role:</span> {fetchedRole}
+                </p>
+              )}
+              {/* Set User Role */}
+              <div className="flex flex-col gap-2 p-4 bg-gray-300 rounded w-1/2">
+                <h3 className="font-bold text-lg">Set User Role</h3>
+                <input
+                  type="text"
+                  placeholder="Enter user address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Enter role (1: Lender, 2: Borrower, 3: Staker)"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                <Button
+                  shape="round"
+                  className="mb-8"
+                  onClick={handleSetRole}
+                >
+                  Set Role
+                </Button>
+              </div>
+            </section>
+
+            {/* <div className="flex flex-row md:flex-col justify-start items-center w-full gap-[30px] md:gap-5">
               <div className="flex flex-row justify-start w-[66%] md:w-full">
                 <div className="flex flex-col items-center justify-start w-full gap-[17px]">
-                  {/* <div className="flex flex-row justify-between items-start w-full">
-                    <Heading as="h1">My Cards</Heading>
-                    <a href="#">
-                      <Heading size="md" as="h2" className="text-right">
-                        See All
-                      </Heading>
-                    </a>
-                  </div> */}
-
                   <div className="flex flex-row md:flex-col w-full gap-[10px]">
                     <div className="flex flex-row justify-start items-center w-[32%] md:w-full gap-[22px] p-[25px] sm:p-5 bg-gray-50 rounded-[25px]">
                       <Button
@@ -94,11 +196,11 @@ export default function MainDashboardPage() {
                   </div>
                 </div>
               </div>
-            </div>
-            
+            </div> */}
+
             {/* pending requests */}
-            <Heading as="h4">Pending Requests</Heading>
-            <div className="flex flex-col w-full gap-[15px]">
+            {/* <Heading as="h4">Pending Requests</Heading> */}
+            {/* <div className="flex flex-col w-full gap-[15px]">
               <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-gray-50 rounded-[20px]">
                 <Button
                   size="3xl"
@@ -129,10 +231,9 @@ export default function MainDashboardPage() {
                     <button>Approve✅</button>
                     <button>Reject❌</button>
                   </Text>
-                 
                 </div>
               </div>
-              {/* next loan */}
+
               <div className="flex flex-row sm:flex-col justify-start items-center w-full p-[15px] sm:gap-5 bg-gray-50 rounded-[20px]">
                 <Button
                   size="3xl"
@@ -164,8 +265,8 @@ export default function MainDashboardPage() {
                     <button>Reject❌</button>
                   </Text>
                 </div>
-              </div>
-            </div>
+              </div> 
+             </div> */}
           </div>
         </div>
       </div>

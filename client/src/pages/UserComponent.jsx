@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserService from "../services/UserService";
+import toast from "react-hot-toast";
 
 const UserComponent = () => {
   const [role, setRole] = useState("");
@@ -8,10 +9,10 @@ const UserComponent = () => {
     try {
       const tx = await UserService.createUser();
       console.log("User Created Transaction:", tx);
-      alert("User created successfully!");
+      toast.success("User created successfully!");
     } catch (error) {
       console.error("Error creating user:", error);
-      alert("Failed to create user.");
+      toast.error("Failed to create user.");
     }
   };
 
@@ -19,10 +20,10 @@ const UserComponent = () => {
     try {
       const tx = await UserService.setRole(role);
       console.log("Role Set Transaction:", tx);
-      alert("Role set successfully!");
+      toast.success("Role set successfully!");
     } catch (error) {
       console.error("Error setting role:", error);
-      alert("Failed to set role.");
+      toast.error("Failed to set role.");
     }
   };
 
